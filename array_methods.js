@@ -141,7 +141,22 @@ console.log(numbers);
 numbers.forEach((value, index, array) => console.log(array[index] += value));
 console.log(numbers);
 
-// =========================================================================================
+// ========================================================================
+console.log('<<<<<<<<<<<<<<<<<<<< The map() Method >>>>>>>>>>>>>>>>>>>>');
+/**
+ * => The map() method passes each element of the array on which it is invoked to the function we specify, 
+ * and returns an array Containing the values returned by our function.(That means map() doesn't modify the original array).
+ * => map() is aware of sparse array, and it's function will not be called for the missing elements, BUT the 
+ * returned array will be sparse, the same length and the same missing elements as the original. 
+ */
+let aa = [1, 2, 3, 4];
+// map() returns a new array
+let newAa = aa.map(x => x * x);
+console.log(aa); //=> [1,2,3,4]
+console.log(newAa); //=> [1,4,9,16]
+
+
+// ========================================================================
 console.log('<<<<<<<<<<<<<<<<<<<< The Sort() Method >>>>>>>>>>>>>>>>>>>>');
 
 const noArray = [49, 35, 46, 92, 43, 38, 29];
