@@ -196,10 +196,42 @@ const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
 // ========================================================================
 console.log('<<<<<<<<<<<<<<<<<<<< The Reduce() Method >>>>>>>>>>>>>>>>>>>>');
+/**
+ * => The Reduce() method combines the elements of an array, using the function you 
+ * specify, to produce a single value.
+ * => Reduce() takes two arguments:
+ * ** The FIRST: is the FUNCTION that performs the reduction operation.
+ * ** The SECOND: (optional) is an initial value to pass to the function.
+ * [NOTICE] when invoking reduce() without initial value, it uses the first element of
+ * the array as the initial value.
+ * => The FUNCTION used with reduce'as first argument', takes four arguments:
+ * ** The FIRST: the ACCUMULATOR --> is like SNOWBALL, it grows in each iteration.
+ * ** The SECOND: the Value 'array item'
+ * ** The THIRD: (optional) the Index of the value.
+ * ** The FOURTH: (optional) the Array itself.
+ * 
+ * FOR MORE ILLUSTRATED EXPLAINATION LOOK AT THE BOARD:
+ */
 let reduceArray = [1, 2, 3, 4, 5];
-const reults = reduceArray.reduce((x, y) => x + y);
+const reults = reduceArray.reduce((x, y, i) => {
+    console.log(`Iteration ${i}: ${x}`);
+    return x + y
+});
+console.log(reults);
 
-
+/**
+ * a Function that takes movements and filtering and reducing its values to three
+ * totals : Deposits, Withdrawals and Balance.
+ */
+const calculateTotal = (movs) => {
+    const deposits = movs.filter(mov => mov > 0).reduce((accum, curValue) => accum + curValue, 0);
+    const withdrawals = movs.filter(mov => mov < 0).reduce((accum, curValue) => accum + curValue, 0);
+    const balance = movs.reduce((accum, curValue) => accum + curValue, 0);
+    return { deposits, withdrawals, balance };
+}
+const { withdrawals: totalWithdrawals, balance, deposits: totalDeposits } = calculateTotal(movements);
+console.log(totalDeposits, totalWithdrawals, balance);
+// 
 console.log('----------------------------------------------------------------------------------');
 // ========================================================================
 console.log('<<<<<<<<<<<<<<<<<<<<<< The Sort() Method >>>>>>>>>>>>>>>>>>>>>');
