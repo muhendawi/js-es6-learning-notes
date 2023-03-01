@@ -21,7 +21,7 @@ console.log(newArray.slice(2));
 console.log(`NEW ${newArray.slice(-3, -1)}`);
 console.log(`Equivalant to the previous Log: ${newArray.slice(newArray.length - 3, newArray.length - 1)}`);
 // It dosen't modify the original array:
-console.log(newArray);
+console.log(newArray); //=> [ 'a', 'b', 'c', 'd', 'e', 'f' ]
 
 // =========================================================================================
 console.log('<<<<<<<<<<<<<<<<<<<< The Splice() Method >>>>>>>>>>>>>>>>>>>>');
@@ -141,13 +141,17 @@ console.log(numbers);
 numbers.forEach((value, index, array) => console.log(array[index] += value));
 console.log(numbers);
 
+console.log('---------------- Data Transformations with MAP, FILTER and REDUCE ----------------');
 // ========================================================================
-console.log('<<<<<<<<<<<<<<<<<<<< The map() Method >>>>>>>>>>>>>>>>>>>>');
+console.log('<<<<<<<<<<<<<<<<<<<< The Map() Method >>>>>>>>>>>>>>>>>>>>');
 /**
  * => The map() method passes each element of the array on which it is invoked to the function we specify, 
  * and returns an array Containing the values returned by our function.(That means map() doesn't modify the original array).
+ * => Map() returns a new array containing the results of applying an operation on all
+ * original array elements.
  * => map() is aware of sparse array, and it's function will not be called for the missing elements, BUT the 
- * returned array will be sparse, the same length and the same missing elements as the original. 
+ * returned array will also be sparse, the same length and the same missing elements as the original.
+ * => The function we pass to the map() it invoked just as for forEach().
  */
 let aa = [1, 2, 3, 4];
 // map() returns a new array
@@ -155,15 +159,57 @@ let newAa = aa.map(x => x * x);
 console.log(aa); //=> [1,2,3,4]
 console.log(newAa); //=> [1,4,9,16]
 
+// Mapping the movements array into USD.
+const eurToUsd = 1.1;
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+console.log(movementsUSD);
 
+// Mapping again on the movements:
+const movementsDescriptions = movements.map((mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? `Deposit` : `Withdrew`} ${Math.abs(mov)}`
+    // const type = mov > 0 ? `Deposit` : `Withdrew`;
+    // return `Movement ${i + 1}: You ${type} ${Math.abs(mov)}`;
+    //===========================================================
+    // if (mov > 0) {
+    //     return `Movement ${i + 1}: You Deposited ${mov}`
+    // } else {
+    //     return `Movement ${i + 1}: You Withdrew ${Math.abs(mov)}`
+    // }
+);
+console.log(movementsDescriptions);
 // ========================================================================
-console.log('<<<<<<<<<<<<<<<<<<<< The Sort() Method >>>>>>>>>>>>>>>>>>>>');
+console.log('<<<<<<<<<<<<<<<<<<<< The Filter() Method >>>>>>>>>>>>>>>>>>>>');
+/**
+ * => The filter() method returns an array containing a subset or all of the elements of the 
+ * array on which it is invoked. The function we pass to it should be PREDICATE: A function that returns TRUE or FALSE.
+ * => filter() returns a NEW ARRAY containing the array elements that passed a specified TEST CONDITION.
+ */
+const aaResults = aa.filter(x => typeof x === 'number');
+console.log(aaResults);
+
+// filtering only deposits "which are the positive values" from movements array
+const deposits = movements.filter((mov) => mov > 0);
+console.log(deposits);
+
+// filtering only withdrawals "Which are the negative values" from movements array.
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
+// ========================================================================
+console.log('<<<<<<<<<<<<<<<<<<<< The Reduce() Method >>>>>>>>>>>>>>>>>>>>');
+let reduceArray = [1, 2, 3, 4, 5];
+const reults = reduceArray.reduce((x, y) => x + y);
+
+
+console.log('----------------------------------------------------------------------------------');
+// ========================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The Sort() Method >>>>>>>>>>>>>>>>>>>>>');
 
 const noArray = [49, 35, 46, 92, 43, 38, 29];
-// Ascending sorting, from lowr to highr
+// Ascending sorting, from lowr to higher
 console.log(noArray.sort((a, b) => a - b));
 // // Descending sorting, form higher to lower
 console.log(noArray.sort((a, b) => b - a));
+
 
 
 

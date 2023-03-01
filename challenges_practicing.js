@@ -56,3 +56,29 @@ for (const flight of flights.split('+')) {
     const output = `${status.startsWith('Delayed') ? '🔴' : ''} ${status} from ${getCode(from)} to ${getCode(to)} (${time.replace(':', 'h')})`.padStart(45);
     console.log(output);
 }
+
+
+
+
+console.log('===================================================================================');
+const juliaData = [3, 5, 2, 12, 7], kateData = [4, 1, 15, 8, 3];
+const juliaData2 = [9, 16, 6, 8, 3], kateData2 = [10, 5, 6, 1, 4];
+
+
+const checkDogs = function (dogsJulia, dogsKate) {
+    // Shalow copying julia's data array
+    const dogsJuliaCopy = [...dogsJulia];
+    // removing the wrong data
+    dogsJuliaCopy.splice(0, 1);
+    dogsJuliaCopy.splice(-2);
+    // joining both Julia and Kate data together
+    const juliaKateData = [...dogsJuliaCopy, ...dogsKate];
+    juliaKateData.forEach((age, index) => {
+        let dogType = age >= 3 ? `Dog number ${index + 1} is an adult, and is ${age} years old` : `Dog number ${index + 1} is still a puppy 🐶`;
+        console.log(`${dogType}`);
+    });
+
+}
+
+checkDogs(juliaData, kateData);
+checkDogs(juliaData2, kateData2);
