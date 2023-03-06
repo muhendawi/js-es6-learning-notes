@@ -82,3 +82,26 @@ const checkDogs = function (dogsJulia, dogsKate) {
 
 checkDogs(juliaData, kateData);
 checkDogs(juliaData2, kateData2);
+
+console.log('===================================================================================');
+
+const calcAverageHumanAge = (ages) => {
+    const adultHumanAge = ages.map(dogAge => dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4).filter((currAge) => (currAge > 18));
+    // console.log(adultHumanAge);
+    const totalAdultHumanAge = adultHumanAge.reduce((accu, currAge) => accu + currAge, 0);
+    // console.log(totalAdultHumanAge);
+    const average = totalAdultHumanAge / adultHumanAge.length;
+    // console.log(average);
+    return average;
+};
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+
+const calcAverageHAges = (ages) => {
+    const average = ages.map(dogAge => dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4).filter((currAge) => (currAge > 18)).reduce((accu, currAge, i, array) => accu + currAge / array.length, 0);
+    return average;
+}
+console.log(calcAverageHAges([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHAges([16, 6, 10, 5, 6, 1, 4]));
+

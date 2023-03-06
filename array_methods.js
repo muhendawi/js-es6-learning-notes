@@ -141,7 +141,7 @@ console.log(numbers);
 numbers.forEach((value, index, array) => console.log(array[index] += value));
 console.log(numbers);
 
-console.log('---------------- Data Transformations with MAP, FILTER and REDUCE ----------------');
+console.log('==== Data Transformations with MAP, FILTER and REDUCE ====');
 // ========================================================================
 console.log('<<<<<<<<<<<<<<<<<<<< The Map() Method >>>>>>>>>>>>>>>>>>>>');
 /**
@@ -216,7 +216,7 @@ let reduceArray = [1, 2, 3, 4, 5];
 const reults = reduceArray.reduce((x, y, i) => {
     console.log(`Iteration ${i}: ${x}`);
     return x + y
-});
+}, 0);
 console.log(reults);
 
 /**
@@ -231,17 +231,71 @@ const calculateTotal = (movs) => {
 }
 const { withdrawals: totalWithdrawals, balance, deposits: totalDeposits } = calculateTotal(movements);
 console.log(totalDeposits, totalWithdrawals, balance);
-// 
-console.log('----------------------------------------------------------------------------------');
+
+
+console.log('==============================================================');
 // ========================================================================
 console.log('<<<<<<<<<<<<<<<<<<<<<< The Sort() Method >>>>>>>>>>>>>>>>>>>>>');
 
 const noArray = [49, 35, 46, 92, 43, 38, 29];
 // Ascending sorting, from lowr to higher
 console.log(noArray.sort((a, b) => a - b));
-// // Descending sorting, form higher to lower
+// Descending sorting, form higher to lower
 console.log(noArray.sort((a, b) => b - a));
 
 
+// ========================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The find() Method >>>>>>>>>>>>>>>>>>>>>');
+/**
+ * => The find() method retrives one element of an array based on codition
+ * => LIKE Filter() It iterates through an array looking for elements for which our predicate
+ * function returns a truthy value.
+ * => UNLIKE Filter(), it stops iterating the first time the predicate finds an
+ * element.
+ * 
+ * => The findIndex() is exactly the same but it returns the index of the value 
+ * not the value itself.
+ */
+// FIND()
+console.log(movements.find(value => value > 0 && value < 100));//=> Returns: 70
+// FINDINDEX()
+console.log(movements.findIndex(value => value > 0 && value < 100)); //=> Returns: 6
 
 
+
+// ========================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The some() Method >>>>>>>>>>>>>>>>>>>>>');
+/**
+ * => Some() method is a predicate and passes another predicate.
+ * => It returns TRUE if there exists at least one element in the array,
+ * and it stops iterating.
+ * => Returns FALSE if AND ONLY IF the predicate returns FALSE for all the elements in the
+ * array.
+ * => It only iterates through the entire array if the 'parameter'/predicate always returns
+ * FALSE
+ * => Stops iterating once it returns TRUE.
+ */
+console.log(movements.some(mov => mov > 0)); //=> Returns: True
+console.log(movements.some(mov => mov === 0)); //=> Returns: False
+const emptyArray = [];
+// Invoking Some() on empty array always returns FALSE
+console.log(emptyArray.some(element => element >= 0)); //=> Returns: False
+const collection = [1, 2, 3, 'A', 'B', 'C'];
+console.log(collection.some(isNaN)); //=> Returns: True, cuz collection has a non-numbers value.
+
+const tenPercent = 10000 * (10 / 100);
+console.log(movements.some(deposit => deposit >= tenPercent));
+
+
+//============================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The every() Method >>>>>>>>>>>>>>>>>>>>>');
+/**
+ * => Every() method is a predicate and passes another predicate.
+ * => Returns TRUE if AND ONLY IF the predicate function returns TRUE for
+ * all the elements in the array.
+ * => Returns FALSE the first time the predicate returns FALSE, and stops
+ * iterating.
+ */
+console.log(movements.every(isNaN)); //=> Returns: false, cuz movements don't have non-numbers
+// Always Returns TRUE when iterating through an empty array.
+console.log(emptyArray.every(mov => mov >= 0)); //=> Returns: true.

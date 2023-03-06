@@ -1,4 +1,6 @@
 'use strict';
+//=============================================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< The OR || Operator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 /** 
  * => We Always use logical operators to combine/examine two boolean values.
  * => Logical Operators can use ANY DATA TYPE, they can RETURN ANY DATA TYPE,
@@ -20,6 +22,8 @@ console.log(3 || 'hello'); //=> Returns 3
 console.log('' || 'Hello'); //=> Returns Hello
 console.log(false || '' || 0 || undefined || 'Muhammad' || 3); //=> Returns Muhammad
 
+//=============================================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< The AND && Operator >>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 /**
  * => In AND (&&) Operator: Is the exact opposite of OR(||) Operator.
  * If the first operand(on the left) is FALSY, it will immediately return it
@@ -148,7 +152,7 @@ console.log(italianRestaurant);
 console.log(frenchRestaurant);
 
 // AFTER ES2021
-italianRestaurant.owner &&= '<ANONYMOUS>'; //=> Creates and Sets owner to UNDEFINED
+italianRestaurant.owner &&= '<ANONYMOUS>'; //=> Creates and sets owner to UNDEFINED
 frenchRestaurant.owner &&= '<ANONYMOUS>'; //=> Sets owner to '<ANONYMOUS>'
 
 console.log(italianRestaurant);
