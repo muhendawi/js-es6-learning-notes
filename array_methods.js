@@ -98,8 +98,8 @@ console.log('<<<<<<<<<<<<<<<<<<<< The At() Method >>>>>>>>>>>>>>>>>>>>');
 /**
  * The At() method acts exactly like THE BRACKET NOTATION[], but with slight differnece
  * in use case.
- * It specifies the array element relative to the length of the array. like in slice() method.
- * It works on Strings too.
+ * It specifies the array element relative to the length of the array. 
+ * like in slice() method.and It works on Strings too.
  */
 console.log(newArray.at(0));
 // Getting the last item in an array with BRACKET NOTATION
@@ -299,3 +299,118 @@ console.log('<<<<<<<<<<<<<<<<<<<<<< The every() Method >>>>>>>>>>>>>>>>>>>>>');
 console.log(movements.every(isNaN)); //=> Returns: false, cuz movements don't have non-numbers
 // Always Returns TRUE when iterating through an empty array.
 console.log(emptyArray.every(mov => mov >= 0)); //=> Returns: true.
+
+
+//============================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The flat() Method >>>>>>>>>>>>>>>>>>>>>');
+/**
+ * => flat() method creates and returns a new array that contains the same elements as 
+ * the array it is called on, EXCEPT that any elements that are themeselves arrays are 
+ * "Flattened" into the returned array.
+ * => When called with no arguments, flat() flattens one level of nesting, Elements of 
+ * the original array that are themeselves arrays are flattened, BUT array elements of
+ * those arrays are not flattened.
+ * 
+ */
+
+// passing 1 to flat(1) also flattens ONE level of nesting, just like calling it without it.(
+console.log([1, [2, [3, [4]]]].flat()); //=> Results: [1, 2, [3, [4]]]
+console.log([1, [2, [3, [4]]]].flat(1)); //=> Results: [1, 2, [3, [4]]]
+// passing 2 to flat(2) flattens TWO levels
+console.log([1, [2, [3, [4]]]].flat(2)); //=> Results: [1, 2, 3, [4]]
+// passing 3 to flat(3) flattens THREE levels
+console.log([1, [2, [3, [4]]]].flat(3)); //=> Results: [1, 2, 3, 4]
+// and So on........
+
+
+//============================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The flatMap() Method >>>>>>>>>>>>>>>>>>>>>');
+/**
+ * => The flatMap() method works just like the map() method, EXCEPT that the returned
+ * array is automatically flattened as if passed to flat().
+ * => So, calling flatMap() is the same as "but more effecient than" map().flat().
+ * [NOTICE] flatMap() don't flattened nested arrays only flattens one level, To flatten
+ * more/deep levels we have to chain flat() with flatMap().
+ */
+
+// console.log([1, [2, [3, [4]]]].flatMap(item => item).flat(2));
+// const accountsMovements = accounts.map(acc => acc.movements);
+// console.log(accountsMovements);
+// console.log(accountsMovements.flat().reduce((accu, currentV) => accu + currentV, 0));
+
+
+// const accsMovements = accounts.flatMap(acc => acc.movements).reduce((accu, cV) => accu + cV, 0);
+// console.log(accsMovements);
+
+
+
+//===========================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The sort() Method >>>>>>>>>>>>>>>>>>>>>');
+/**
+ * => sort() Naturally sort array of strings alphabetically from a:z without any callbacks.
+ * => When sorting numbers we just use the conditions a-b and b-a because it will naturally 
+ * produce a positive/negative number value.
+ * => BUT, when sorting strings in a complex data structure like array of objects, we need 
+ * to provide the positve or negative values ourselves according to the sorting type ascending
+ * or descending. 
+ */
+
+// Sorting array of numbers:
+const sortArray = [1, 34, 435, 687, -123, -12, 7686, 4343, -12];
+console.log(sortArray);
+sortArray.sort((a, b) => a - b); //=> Ascending Order: cuz of the condition 'a-b'
+console.log(sortArray);
+sortArray.sort((a, b) => b - a); //=> Descending Order: cuz of the condition 'b-a'
+console.log(sortArray);
+
+// sorting strings in a complex data structure array of objects:
+const sortNames = [{ name: 'Alex' }, { name: 'Tylor' }, { name: 'Jamie' }];
+console.log(sortNames);
+sortNames.sort((a, b) => {          //=> Ascending alphabitacally a:z 'a,b,c.....'
+    if (a.name > b.name) return 1
+    return -1;
+});
+console.log(sortNames);
+sortNames.sort((a, b) => {          //=> Descending alphabitacally z:a 'z,y,x.....'
+    if (a.name > b.name) return -1
+    return 1;
+});
+console.log(sortNames);
+
+// sorting an array in ascending order and then revert it back again:
+// const btnSort = document.querySelector('#btn');
+// const accMovements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const displayMovements = (movements, sort = false) => {
+//     const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+//     console.log(movs);
+// }
+// let sorted = false;
+// btnSort.addEventListener('click', eventObj => {
+//     eventObj.preventDefault();
+//     displayMovements(movements, !sorted);
+//     sorted = !sorted;
+// })
+
+
+
+//===========================================================================
+console.log('<<<<<<<<<<<<<<<<<<<<<< The fill() Method >>>>>>>>>>>>>>>>>>>>>');
+/**
+ * => the fill() method sets the elements of an array, or a slice of an array, to a specified 
+ * value. 
+ * => fill() takes 3 arguments:
+ * ** THE FIRST: is the element/item that will be added.
+ * ** THE SECOND: is the started index (Included).
+ * ** THE THIRD: is the ending index (Excluded).
+ * => fill() specifies the array element relative to the length of the
+ * array, like: at(), slice(), splice().......etc 
+ * => fill() DOES modify the original array.and Also return it.
+ */
+const fillArray = new Array(6);
+console.log(fillArray); //=> Prints: [ <6 empty items> ]
+fillArray.fill(0); //=> Returns: [ 0, 0, 0, 0, 0, 0 ]
+console.log(fillArray); //=> Prints: [ 0, 0, 0, 0, 0, 0 ] Cuz the original is modified
+fillArray.fill(1, 1, 2);//=> Returns: [ 0, 1, 0, 0, 0, 0 ]
+console.log(fillArray); //=> Prints: [ 0, 1, 0, 0, 0, 0 ] Cuz the original is modified
+fillArray.fill(5, -1); //=> Returns: [ 0, 1, 0, 0, 0, 5 ]
+console.log(fillArray);//=> Prints: [ 0, 1, 0, 0, 0, 5 ] Cuz the original is modified   
