@@ -109,3 +109,15 @@ console.log(Date.now());
 const monDate = new Date();
 console.log(+monDate);
 console.log(monDate);
+
+const btns = document.querySelectorAll('.btns');
+btns.forEach((btn, i) => {
+    btn.addEventListener('click', (e) => {
+        btn.classList.add('red-style');
+        console.log(`class"red-style" added to button No.${i + 1}`);
+    })
+})
+
+document.addEventListener('keydown', (eventObj) => {
+    console.log(eventObj.code);
+})

@@ -105,3 +105,49 @@ const calcAverageHAges = (ages) => {
 console.log(calcAverageHAges([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHAges([16, 6, 10, 5, 6, 1, 4]));
 
+
+
+console.log('=====================================================================');
+
+const Car = function (make, speed) {
+    this.make = make;
+    this.speed = speed;
+}
+Car.prototype.accelerate = function () {
+    console.log(`Accelerator is pressed: ${this.make} speeds up to ${this.speed = this.speed + 10} km/h`);
+}
+Car.prototype.brake = function () {
+    console.log(`Brakes are pressed: ${this.make} speeds down to ${this.speed = this.speed - 5} km/h`);
+}
+
+const EV = function (make, speed, charge) {
+    Car.call(this, make, speed);
+    this.charge = charge;
+}
+// 
+EV.prototype = Object.create(Car.prototype);
+EV.prototype.constructor = EV;
+EV.prototype.accelerate = function () {
+    console.log(`${this.make} going at ${this.speed += 20} km/h, with a charge of ${this.charge--}%`);
+}
+EV.prototype.chargeBattery = function (chargeto) {
+    this.charge = chargeto;
+}
+
+const bmw = new Car('BMW', 180);
+bmw.accelerate();
+bmw.brake();
+console.log(bmw);
+
+const tesla = new EV('Tesla', 180, 90);
+for (let i = 0; i < 200; i++) {
+    tesla.accelerate()
+}
+tesla.brake();
+tesla.brake();
+tesla.brake();
+tesla.brake();
+tesla.brake();
+tesla.brake();
+tesla.chargeBattery(90);
+console.log(tesla.charge);
