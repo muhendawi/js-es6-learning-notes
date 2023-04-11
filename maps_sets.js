@@ -136,8 +136,9 @@ console.log(newSet);
 console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAPS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 //===================================================================================
 /**
- * => A Map object represents a set of values known as KEYS, where each key has another
+ * => A Map object represents a set of values known as "KEYS", where each key has another
  * value associated with/mapped to it.
+ * A key in the Map may only occur once; it is unique in the Map's collection.
  * => Maps allow us to use arbitrary-values(any javaScript value) as Keys.
  */
 
@@ -152,7 +153,7 @@ let m = new Map(); //=> Create a new, empty Map.
 let n = new Map([['one', 1], ['two', 2]]); //=> A new map initialized with string keys mapped to numbers
 
 /**
- * We cn use Map() constructor to:
+ * We can use Map() constructor to:
  * => Copy other maps.
  * => copy the property names and values from an existing object by using
  * Object.entries() that returns an array of arrays.
