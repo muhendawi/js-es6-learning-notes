@@ -4,7 +4,7 @@ console.log('<<<<<<<<<<<<<<<<<<<<<< DESTRUCTURING >>>>>>>>>>>>>>>>>>>>>>');
 /**
  * => In Destructuring Assignment, the value on the righthand side of the equals
  * sign is an ARRAY or OBJECT(a STRUCTURED value), and the lefthand side specifies
- * one or more variable names using a syntax that mimics array and object literal syntax
+ * one or more variable names using a syntax that mimics array or object literal syntax
  * => It doesn't actually require an array! You can use any iterable object on the
  * righthand side of the assignment, which means "any object that can be used with 
  * for/of loop can also be destructed"
